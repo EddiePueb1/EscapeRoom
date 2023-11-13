@@ -34,32 +34,50 @@ public class UniversalButton : MonoBehaviour
     sound = GetComponent<AudioSource>();
     isPressed = false;
     currPos = transform.position;
+        Debug.Log(currPos);
+
   }
 
   private void OnTriggerEnter(Collider other)
   {
     if (!isPressed)
     {
-      button.transform.localPosition = new Vector3(currPos.x, currPos.y - 0.10f, currPos.z);
+      button.transform.localPosition = new Vector3(0, currPos.y - 0.001f, 0 );
       presser = other.gameObject;
       onPress.Invoke();
       sound.Play();
       isPressed = true;
     }
+
   }
 
   private void OnTriggerExit(Collider other)
+
   {
     if (other.gameObject == presser)
     {
-      button.transform.localPosition = new Vector3(currPos.x, currPos.y + 0.10f, currPos.z);
+      button.transform.localPosition = new Vector3(0, currPos.y + 0.10f, 0
+);
       onRelease.Invoke();
       isPressed = false;
     }
+
   }
 
   //Add functionality for button here
   //Ex. public void SomeFucntion();
   // set function directly on inspector
   // 
+
+
+
+   public void SpawnObject()
+    {
+        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        sphere.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        sphere.transform.localPosition = new Vector3(0, 1, 1);
+        sphere.AddComponent<Rigidbody>();
+
+    }
+    
 }
