@@ -26,6 +26,9 @@ public class UniversalButton : MonoBehaviour
   GameObject presser;
   AudioSource sound;
   bool isPressed;
+  public GameObject cubes;
+    
+
 
   Vector3 currPos;
 
@@ -42,7 +45,7 @@ public class UniversalButton : MonoBehaviour
   {
     if (!isPressed)
     {
-      button.transform.localPosition = new Vector3(0, currPos.y - 0.001f, 0 );
+      button.transform.localPosition = new Vector3(0, 0.55f, 0 );
       presser = other.gameObject;
       onPress.Invoke();
       sound.Play();
@@ -56,8 +59,7 @@ public class UniversalButton : MonoBehaviour
   {
     if (other.gameObject == presser)
     {
-      button.transform.localPosition = new Vector3(0, currPos.y + 0.10f, 0
-);
+      button.transform.localPosition = new Vector3(0, 0.66f, 0);
       onRelease.Invoke();
       isPressed = false;
     }
@@ -71,12 +73,15 @@ public class UniversalButton : MonoBehaviour
 
 
 
-   public void SpawnObject()
+    public void SpawnObject()
     {
-        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        sphere.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        sphere.transform.localPosition = new Vector3(0, 1, 1);
-        sphere.AddComponent<Rigidbody>();
+        Instantiate(cubes);
+    }
+
+
+    public void ToggleLights()
+    {
+        //sdfag
 
     }
     
